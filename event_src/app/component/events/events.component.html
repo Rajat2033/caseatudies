@@ -1,0 +1,126 @@
+<div class="container h-100">
+    <div class="card">
+        <div class="card-body p-5">
+            <h3 class="text-center" [ngStyle]="{color:'red'}">Add New Events</h3>
+            <form #formData="ngForm" (ngSubmit)="createNewEvents(formData)">
+                <div class="form- md-4">
+                    <label class="form-label">Enter Title</label>
+                    <input type="text" name="eventTitle" class="form-control" #eventtitle="ngModel" ngModel required
+                        placeholder="Enter Event Title" minlength="5" maxlength="10">
+                    <span style="color:red" *ngIf="eventtitle.touched && eventtitle.invalid">Enter Proper event
+                        title</span>
+                </div>
+                <div>
+                    <label class="form-label">Enter Description</label>
+                    <input type="textarea" name="description" class="form-control" ngModel required #eventDesc="ngModel"
+                        placeholder="Enter Event Description" minlength="10" maxlength="14">
+                    <span style="color:red" *ngIf="eventDesc.touched && eventDesc.invalid">Enter Event Description
+                        properly</span>
+                </div>
+
+                <div>
+                    <label class="form-label">Select Event Date</label>
+                    <input type="date" name="eventDate" class="form-control" ngModel required #eventDate="ngModel"
+                        placeholder="Enter Event Date">
+                </div>
+
+                <div>
+                    <label class="form-label">Enter Location of Events</label>
+                    <input type="text" name="eventLocation" class="form-control" ngModel required
+                        #eventlocation="ngModel" placeholder="Enter Event Locations" minlength="4" maxlength="10">
+                    <span style="color: red;" *ngIf="eventlocation.touched && eventlocation.invalid">Enter Event
+                        Location properly</span>
+                </div>
+
+                <div>
+                    <label class="form-label">Enter Attendess of Event</label>
+                    <input type="number" name="maxAttendees" class="form-control" min="5000" max="15000" ngModel
+                        required placeholder="Enter Event maxAttendees" #maxAttendees="ngModel">
+                    <span style="color:red" *ngIf="maxAttendees.touched && maxAttendees.invalid">Enter attendees
+                        properly. Attendess counts hsould be between 5000 and 15000</span>
+                </div>
+
+                <div>
+                <label class="form-label">Enter Registration Fees of Event</label>
+                <input type="number" name="registrationFees" max="10000" min="1000"  #registrationFees="ngModel" class="form-control" ngModel required
+                    placeholder="Enter Event Title">
+                    <span style="color:red" *ngIf="registrationFees.touched && registrationFees.invalid">Enter registrationFees between 1000 and 10000</span>
+
+                </div>
+                <button class="btn btn-primary" [disabled]="formData.invalid">Create Event</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container h-100">
+    <div class="card">
+        <div class="card-body p-5">
+            <h3 class="text-center" [ngStyle]="{color:'red'}">Get All Events</h3>
+            <table class="table">
+                <thead class="thead-dark">
+                    <th>Sr.no</th>
+                    <th>Event Id</th>
+                    <th>Event Title</th>
+                    <th>Event Description</th>
+                    <th>Event Date</th>
+                    <th>Event Locations</th>
+                    <th>Event MaxAttendees</th>
+                    <th>Event Registration Fees</th>
+                    <th>Actions</th>
+                </thead>
+                <tr *ngFor="let events of eventsList,index as i">
+                    <td>{{i+1}}</td>
+                    <td>{{events.eventId}}</td>
+                    <td>{{events.eventTitle}}</td>
+                    <td>{{events.description}}</td>
+                    <td>{{events.eventDate}}</td>
+                    <td>{{events.eventLocation}}</td>
+                    <td>{{events.maxAttendees}}</td>
+                    <td>{{events.registrationFees}}</td>
+                    <td><button class="btn btn-success" (click)="gototheupdateform(events.eventId)">Update
+                            Event</button></td>
+                    <td><button class="btn btn-danger" (click)="deleteevent(events.eventId)">Delete Event</button></td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="container h-100">
+    <div class="card">
+        <div class="card-body p-5">
+            <h3 class="text-center" [ngStyle]="{color:'red'}">Get Events By Id</h3>
+            <form #searchform="ngForm" (ngSubmit)="searchResult()">
+                <input type="number" class="form-control" name="eventId" [(ngModel)]="searchInput"
+                    placeholder="Enter EventId">
+                <button class="btn btn-success">Search</button>
+            </form>
+
+            <table class="table">
+                <thead class="thead-dark">
+                    <th>Sr.no</th>
+                    <th>Event Id</th>
+                    <th>Event Title</th>
+                    <th>Event Description</th>
+                    <th>Event Date</th>
+                    <th>Event Locations</th>
+                    <th>Event MaxAttendees</th>
+                    <th>Event Registration Fees</th>
+
+                </thead>
+                <tr *ngIf=" event">
+                    <td>{{1}}</td>
+                    <td>{{event.eventId}}</td>
+                    <td>{{event.eventTitle}}</td>
+                    <td>{{event.description}}</td>
+                    <td>{{event.eventDate}}</td>
+                    <td>{{event.eventLocation}}</td>
+                    <td>{{event.maxAttendees}}</td>
+                    <td>{{event.registrationFees}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,68 @@
+<div class="card">
+    <div class="card-body p-5">
+        <h4 class="text-center" [ngStyle]="{color:'red'}">Flight Registration</h4>
+        <form #formData="ngForm" (ngSubmit)="updateFlight(formData)">
+            <div class="form-outline md-5">
+                <label class="form-label">Enter Airline Name</label>
+                <input type="text" name="airline" class="form-control" required [(ngModel)]="flights.airline"
+                    placeholder="enter airline details">
+            </div>
+
+            <label class="form-label">Enter Departure Airport</label>
+            <input type="text" name="departureAirport" class="form-control" required
+                [(ngModel)]="flights.departureAirport" placeholder="enter departure location">
+
+            <label class="form-label">Enter Arrival Airport</label>
+            <input type="text" name="arrivalArport" class="form-control" required [(ngModel)]="flights.arrivalArport"
+                placeholder="enter arrival location">
+
+            <label class="form-label">Enter Departure Date</label>
+            <input type="date" name="dateTime" class="form-control" required [(ngModel)]="flights.dateTime"
+                placeholder="enter departure date">
+
+            <label class="form-label">Enter Flight Description</label>
+            <input type="text" name="filghtDesc" class="form-control" required [(ngModel)]="flights.filghtDesc"
+                placeholder="enter flight description">
+
+            <label class="form-label">Enter Ticket price</label>
+            <input type="text" name="ticketPrice" class="form-control" required [(ngModel)]="flights.ticketPrice"
+                placeholder="enter flight ticket price">
+
+            <button class="btn btn-primary">Update Flight</button>
+
+        </form>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body p-5">
+        <h4 class="text-center" [ngStyle]="{color:'red'}">Get Flight By id</h4>
+        <form #searchform="ngForm" (ngSubmit)="searchResult()">
+            <input type="number" class="form-control" name="flightNumber" [(ngModel)]="searchInput"
+                placeholder="Enter EventId">
+            <button class="btn btn-success">Search</button>
+        </form>
+        <table class="table ">
+            <thead>
+                <th>Sr.No</th>
+                <th>Flight Number</th>
+                <th>Airline Name</th>
+                <th>Departure Location</th>
+                <th>Arrival Location</th>
+                <th>Departure Date</th>
+                <th>Flight Description</th>
+                <th>Ticket Price</th>
+
+            </thead>
+            <tr *ngIf="flight">
+                <td>{{1}}</td>
+                <td>{{flight.flightNumber}}</td>
+                <td>{{flight.airline}}</td>
+                <td>{{flight.departureAirport}}</td>
+                <td>{{flight.arrivalArport}}</td>
+                <td>{{flight.dateTime}}</td>
+                <td>{{flight.filghtDesc}}</td>
+                <td>{{flight.ticketPrice}}</td>
+
+            </tr>
+        </table>

@@ -1,0 +1,38 @@
+<div class="container h-100">
+    <div class="card">
+        <div class="card-body p-5">
+            <h3 class="text-center"[ngStyle]="{color:'red'}">Update Existing Events</h3>
+            <form #formData="ngForm" (ngSubmit)="updateEvents(formData)">
+                <div class="form- md-4">
+                    <label class="form-label">Enter Title</label>
+                    <input type="text" name="eventTitle" class="form-control" [(ngModel)]="events.eventTitle" required
+                        placeholder="Enter Event Title">
+                </div>
+
+                <label class="form-label">Enter Description</label>
+                <input type="textarea" name="description" class="form-control" [(ngModel)]="events.description" required
+                    placeholder="Enter Event Description">
+
+
+                <label class="form-label">Select Event Date</label>
+                <input type="date" name="eventDate" class="form-control" [(ngModel)]="events.eventDate" required
+                    placeholder="Enter Event Date">
+
+                <label class="form-label">Enter Location of Events</label>
+                <input type="text" name="eventLocation" class="form-control" [(ngModel)]="events.eventLocation" required
+                    placeholder="Enter Event Locations">
+
+                <label class="form-label">Enter Attendess of Event</label>
+                <input type="number" name="maxAttendees" class="form-control" [(ngModel)]="events.maxAttendees" required
+                    placeholder="Enter Event maxAttendees">
+
+                <label class="form-label">Enter Registration Fees of Event</label>
+                <input type="number" name="registrationFees" class="form-control" [(ngModel)]="events.registrationFees" required
+                    placeholder="Enter Event Title">
+
+                <button class="btn btn-primary">Update Event</button>
+
+            </form>
+        </div>
+    </div>
+</div>
